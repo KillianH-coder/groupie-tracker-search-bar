@@ -1,0 +1,285 @@
+/*************
+ * Reset CSS *
+ *************/
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/*************
+ * Variables *
+ *************/
+
+:root {
+
+/* Colors */
+    --black: 0, 0, 0;
+    --bluepurple: 44, 2, 106;
+    --bluegrey: 157, 174, 208;
+    --bluesmoke: 98, 98, 190;
+    --hotpink: 255, 105, 180;
+    --indigo: 75, 0, 130;
+    --pinksmoke: 185, 98, 190;
+    --purple: 128, 0, 128;
+    --whitesmoke: 245, 245, 245;
+}   
+
+/*****************
+ * General Setup * 
+ *****************/
+
+html {
+    scroll-behavior: smooth;
+    overflow-y: scroll;
+
+    font-size: 1vw;
+}
+
+body {
+    display: grid;
+    overflow-y: auto;
+
+    color: rgb(var(--whitesmoke));
+
+    background-color: rgb(var(--black));
+}
+
+/* Links */
+a {
+    appearance: none;
+    text-decoration: underline;
+    color: rgb(var(--whitesmoke));
+}
+a:hover, a:visited:hover {
+    color: rgb(var(--hotpink));
+}
+a:visited {
+    color: rgb(var(--bluegrey));
+}
+
+/******************
+ * Header Section *
+ ******************/
+
+header {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding: 2vw;
+    height: auto !important;
+    width: 100% !important;
+    min-height: auto;
+    overflow: visible;
+    align-items: center;
+
+    word-break: break-word;
+    white-space: normal;
+    text-align: center;
+    
+    z-index: 2;
+}
+
+/* Header Title */
+#GTtitle {
+    display: inline-block;
+    padding: 1vw 2vw 0 2vw;
+
+    color: transparent;
+    font-family: monospace;
+    font-size: clamp(3vw, 5vw, 7vw);
+    letter-spacing: 0.5vw;
+
+    filter: drop-shadow(
+        0.25vw 0.25vw 0.05vw
+        rgba(var(--indigo), 0.8));
+}
+#textTitle {
+    position: relative;
+    width: auto;
+    align-content: center;
+
+    animation: title 1s ease-in-out 2s forwards;
+    -webkit-animation: title 1s ease-in-out 2s forwards;
+
+    z-index: 5;
+}
+#textTitle::before {
+    content: "GROUPIE TRACKER";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    overflow: hidden;
+    border-right: 2px solid transparent;
+
+    white-space: nowrap;
+
+    /* Sweep effect */
+    background: linear-gradient(
+        90deg,
+        rgb(var(--whitesmoke)) 12%,
+        rgb(var(--bluesmoke)) 33%,
+        rgb(var(--whitesmoke)) 50%,
+        rgb(var(--pinksmoke)) 66%,
+        rgb(var(--whitesmoke)) 86%);
+    background-size: 200% 100%;
+    background-clip: text;
+    -webkit-background-clip: text;
+
+    animation:
+        type 2s steps(15, end) forwards,
+        blink 0.5s step-end 8,
+        sweep 3s linear 1s infinite;
+    -webkit-animation:
+        type 2s steps(15, end) forwards,
+        blink 0.5s step-end 8,
+        sweep 3s linear 1s infinite;
+
+    z-index: 4;
+}
+
+#GTsubtitle {
+    padding: 1vw 2vw 0 2vw;
+
+    color: rgb(var(--bluepurple));
+    font-size: clamp(1vw, 2vw, 3vw);
+    letter-spacing: 0.5vw;
+    text-shadow:
+        -0.15vw -0.2vw 0 rgba(var(--hotpink), 0.3),
+        0.15vw 0.2vw 0 rgba(var(--hotpink), 0.3),
+
+        -0.2vw -0.2vw 0.25vw rgb(var(--whitesmoke)),
+        -0.2vw 0.2vw 0.25vw rgb(var(--whitesmoke)),
+        0.2vw -0.2vw 0.25vw rgb(var(--whitesmoke)),
+        0.2vw 0.2vw 0.25vw rgb(var(--whitesmoke)),
+
+        0 0 0.5vw rgb(var(--whitesmoke)),
+        0 0 1vw rgba(var(--whitesmoke), 0.5),
+        0 0 2vw rgba(var(--whitesmoke), 0.6),
+        0 0 4vw rgba(var(--whitesmoke), 0.7),
+        0 0 8vw rgba(var(--whitesmoke), 0.8);
+}
+
+/**********
+ * Footer *
+ **********/
+
+footer {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    padding: 5vh 5%;
+
+    font-size: medium;
+    text-align: center;
+
+    z-index: 3;
+}
+
+#Zone01 {
+    height: 3vh;
+    width: 7vh;
+    vertical-align: middle;
+}
+
+/**************
+ * Background *
+ **************/
+
+.container-BG {
+    position:fixed;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+
+    background-color: rgb(var(--bluepurple));
+
+    z-index: 1;
+}
+.container-BG::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    background-color: rgba(var(--bluepurple), 0.5);
+
+    z-index: 1;
+}
+
+.video-BG {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    height: auto;
+    width: auto;
+    min-height: 100%;
+    min-width: 100%;
+    object-fit: cover;
+    
+    animation: fade-in-Apparition 1s ease-in-out forwards;
+    filter: blur(0.4vw);
+    transform: translate(-50%, -50%) scale(1.1);
+    -webkit-animation: fade-in-Apparition 1s ease-in-out forwards;
+    -webkit-filter: blur(0.4vw);
+    -webkit-transform: translate(-50%, -50%) scale(1.1);
+
+    z-index: 0;
+}
+.video-bg::-webkit-media-controls-start-playback-button {
+    display: none !important;
+    appearance: none;
+    -webkit-appearance: none;
+}
+  
+/*************
+ * Keyframes *
+ *************/
+
+ /* Groupie Tracker Title */
+ @keyframes type {
+    from { width: 0%; }
+    to { width: 100%; }
+}
+@keyframes blink {
+    10% { border-color: rgb(var(--whitesmoke)); }
+    60% { border-color: transparent; }
+    100% { border-color: rgb(var(--whitesmoke)); }
+}
+@keyframes title {
+    to {
+        color: rgb(var(--whitesmoke));
+    }
+}
+@keyframes sweep {
+    to { background-position: -200% 0; }
+}
+
+/* Background Video */
+@keyframes fade-in-Apparition {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/****************************
+ * Accessibility & Contrast *
+ ****************************/
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        -webkit-animation-duration: 0.01ms !important;
+        -webkit-animation-iteration-count: 1 !important;
+        -webkit-transition-duration: 0.01ms !important;
+    }
+}

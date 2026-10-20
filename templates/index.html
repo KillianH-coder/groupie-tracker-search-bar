@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Groupie Tracker</title>
+    <link rel="stylesheet" href="../assets/css/core-styles.css" />
+    <link rel="stylesheet" href="../assets/css/home-styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
+  </head>
+
+  <body>
+    <div class="container-BG">
+      <video
+        autoplay
+        loop
+        muted
+        playsinline
+        poster="/assets/images/groupie_star.webp"
+        class="video-BG"
+      >
+        <source src="/assets/videos/groupie_star_BG.mp4" type="video/mp4" />
+      </video>
+    </div>
+    <header>
+      <a href="/">
+        <h1 id="GTtitle">
+          <div id="textTitle">GROUPIE TRACKER</div>
+        </h1>
+      </a>
+      <p id="GTsubtitle">
+        Track your favorite music stars and their latest updates
+      </p>
+    </header>
+    <form class="search-form">
+      <div class="search-nav">
+        <div class="search-bar">
+          <input
+            class="search-area"
+            type="search"
+            pattern=".{3,}"
+            list="suggestions"
+            placeholder="Search..."
+            name="search"
+          />
+          <button class="search-button" type="submit">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+        </div>
+      </div>
+    </form>
+
+    <datalist id="suggestions">
+      {{range .Suggestions}}
+        <option label="Artist" value="{{.Name}}"></option>
+            {{range .Members}}
+              <option label="Member" value="{{.}}"></option>
+            {{end}}
+            {{range .ResolvedLocations}}
+              <option label="Location" value="{{.}}"></option>
+            {{end}}
+      {{end}}
+    </datalist>
+
+    <main>
+      {{range .Artists}}
+      <a class="card" href="/artist/{{.ID}}">
+        <img class="card-image" src="{{.Image}}" alt="{{.Name}}" />
+        <p class="card-text">{{.Name}}</p>
+      </a>
+      {{end}}
+    </main>
+    <footer>
+      <p>
+        This content is a school project &copy; 2026 by KH, NL & JM, students of
+        <a href="https://zone01rouennormandie.org/" target="_blank">
+          <img
+            src="https://zone01rouennormandie.org/wp-content/uploads/2024/02/ZONE01-ROUEN-NORMANDIE-HORIZON-FOND-NOIR-BONNE-TAILLE.png"
+            width="55"
+            height="25"
+            id="Zone01"
+            alt="Logo Zone01"
+          />
+        </a>
+      </p>
+      <p>
+        Content available under a
+        <a href="https://en.wikipedia.org/wiki/MIT_License" target="_blank">
+          MIT license
+        </a>
+      </p>
+    </footer>
+  </body>
+</html>

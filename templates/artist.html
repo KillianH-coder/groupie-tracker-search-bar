@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Groupie Tracker</title>
+    <link rel="stylesheet" href="../assets/css/core-styles.css" />
+    <link rel="stylesheet" href="../assets/css/home-styles.css" />
+  </head>
+  <body>
+    <div class="container-BG">
+      <video
+        autoplay
+        loop
+        muted
+        playsinline
+        poster="/assets/images/groupie_star.webp"
+        class="video-BG"
+      >
+        <source src="/assets/videos/groupie_star_BG.mp4" type="video/mp4" />
+      </video>
+    </div>
+    <header>
+      <a href="/">
+        <h1 id="GTtitle">
+          <div id="textTitle">GROUPIE TRACKER</div>
+        </h1>
+      </a>
+      <p id="GTsubtitle">
+        Track your favorite music stars and their latest updates
+      </p>
+    </header>
+    <main>
+      <div id="pop-up{{ .ID }}" class="overlay">
+        <a href="/">
+          <svg
+            class="background-svg"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 100 100"
+            preserveAspectRatio="none"
+          >
+            <rect
+              x="0"
+              y="0"
+              width="100"
+              height="100"
+              fill="rgba(255, 255, 255, 0.1)"
+            />
+          </svg>
+        </a>
+        <div class="artist-popup">
+          <h2 class="artist-title">{{ .Name }}</h2>
+          <div class="artist-infos">
+            <div class="artist-coredata">
+              <img class="artist-image" src="{{ .Image }}" alt="{{ .Name }}" />
+              <div class="artist-origin">
+                <div class="artist-creation">
+                  <h3>CREATION:</h3>
+                  <div id="contener-data">
+                    {{ if .CreationDate }}
+                    <div class="artist-data">{{ .CreationDate }}</div>
+                    {{ else }}
+                    <div class="artist-data">No creation date available</div>
+                    {{ end }}
+                  </div>
+                </div>
+                <div class="artist-album">
+                  <h3>FIRST ALBUM:</h3>
+                  <div id="contener-data">
+                    {{ if .FirstAlbum }}
+                    <div class="artist-data">{{ .FirstAlbum }}</div>
+                    {{ else }}
+                    <div class="artist-data">No first album available</div>
+                    {{end}}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="artist-text">
+              <div class="artist-members">
+                <h3>MEMBERS:</h3>
+                <ul id="contener-data">
+                  {{ range .Members }}
+                  <li class="artist-data">{{.}}</li>
+                  {{ else }}
+                  <li class="artist-data">No member available</li>
+                  {{ end }}
+                </ul>
+              </div>
+              <div class="artist-concerts">
+                <h3>CONCERTS:</h3>
+                <div id="contener-data">
+                    {{ range $key, $values := .ResolvedRelations.DatesLocations }}
+                    <h4 class="artist-locations">{{ $key }}</h4>
+                    <ul class="artist-dates">
+                        {{ range $value := $values }}
+                        <li class="artist-data">{{ $value }}</li>
+                        {{ end }}
+                    </ul>
+                    {{ else }}
+                    <h4 class="artist-locations">No concert available</h4>
+                    {{ end }}
+                </div>
+              </div>
+            </div>
+          </div>
+          <a href="/" class="close-button">X</a>
+          <div class="scroll-indicator">
+            &darr; Scroll down to see more &darr;
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer>
+      <p>
+        This content is a school project &copy; 2026 by KH, NL & JM, students of
+        <a href="https://zone01rouennormandie.org/" target="_blank">
+          <img
+            src="https://zone01rouennormandie.org/wp-content/uploads/2024/02/ZONE01-ROUEN-NORMANDIE-HORIZON-FOND-NOIR-BONNE-TAILLE.png"
+            width="55"
+            height="25"
+            id="Zone01"
+            alt="Logo Zone01"
+          />
+        </a>
+      </p>
+      <p>
+        Content available under a
+        <a href="https://en.wikipedia.org/wiki/MIT_License" target="_blank">
+          MIT license
+        </a>
+      </p>
+    </footer>
+  </body>
+</html>
